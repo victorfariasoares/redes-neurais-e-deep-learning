@@ -1,8 +1,11 @@
 site_name: Template de Entrega
 site_author: Sandmann, H.
-site_url: https://hsandmann.github.io/documentation.template
-repo_url: https://github.com/hsandmann/documentation.template
-repo_name: github/documentation.template
+# troque para o SEU Pages
+site_url: https://victorfariasoares.github.io/redes-neurais-e-deep-learning/
+
+# troque para o SEU repo
+repo_url: https://github.com/victorfariasoares/redes-neurais-e-deep-learning
+repo_name: github/redes-neurais-e-deep-learning
 
 theme:
   name: material
@@ -87,10 +90,10 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-        - name: python
-          class: python
-          validator: !!python/name:markdown_exec.validator
-          format: !!python/name:markdown_exec.formatter
+        # - name: python
+        #   class: python
+        #   validator: !!python/name:markdown_exec.validator
+        #   format: !!python/name:markdown_exec.formatter
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -116,13 +119,17 @@ plugins:
   - badges
   - minify:
       minify_html: true
-  - markdown-exec
+  # - markdown-exec
   - render_swagger:
       allow_arbitrary_locations : true
-  - termynal:
-      prompt_literal_start:
-        - "$"
-        - ">"
+  # - termynal:
+  #     prompt_literal_start:
+  #       - "$"
+  #       - ">"
+  # ▲ ADIÇÃO: plugin para notebooks Jupyter
+  - mkdocs-jupyter:
+      execute: false
+      ignore_h1_titles: true
 
 extra_javascript:
   - https://unpkg.com/mathjax/es5/tex-mml-chtml.js
@@ -139,4 +146,16 @@ nav:
     - Roteiro 2: ./roteiro2/main.md
     - Roteiro 3: ./roteiro3/main.md
     - Roteiro 4: ./roteiro4/main.md
-  - Projeto: ./projeto/main.md
+  # ▲ ADIÇÃO: seus arquivos do Exercício 1 (notebook e markdown)
+  - Exercícios:
+    - Exercício 1 - Data: ./ex1_data/exs.md
+    - Exercício 2 - Perceptron: ./ex2_perceptron/ex2.md
+    - Exercício 3 - MLP: ./ex3_mlp/ex3.md
+    - Exercício 4 - VAE: ./ex4_vae/ex4.md
+  - Projeto 2 (Regression): ./projeto2/regression.md
+  - Projeto 3 (Generative): ./projeto3/generative.md
+
+# Passo a passo para subir um ex novo é:
+# - abrir só a pasta do repositorio com a venv ativa
+# - mandar o comando "jupyter nbconvert --to markdown docs/ex2_perceptron/ex2.ipynb"
+# - mkdocs gh-deploy
